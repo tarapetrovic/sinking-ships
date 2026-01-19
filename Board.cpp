@@ -99,7 +99,11 @@ void Board::printPlayerBoard(){
 		for (int j = 0; j < cols; j++) {
 			Cell& cell = grid[i][j];
 
-			if (cell.isEmpty()) {
+			if (cell.isMissed()) {
+				cout << "O ";
+			}
+
+			else if (cell.isEmpty()) {
 				cout << ". ";
 			}
 
@@ -109,10 +113,6 @@ void Board::printPlayerBoard(){
 
 			else if (cell.isShot()) {
 				cout << "H ";
-			}
-
-			else if (cell.isMissed()) {
-				cout << "O ";
 			}
 
 			else if (cell.getShip()->getType() == 'S') {
@@ -134,20 +134,20 @@ void Board::printComputerBoard(){
 		for (int j = 0; j < cols; j++) {
 			Cell& cell = grid[i][j];
 
-			if (cell.isEmpty()) {
+			if (cell.isMissed()) {
+				cout << "O ";
+			}
+
+			else if (cell.isEmpty()) {
 				cout << ". ";
 			}
-						
+
 			else if (cell.getShip()->isSunk()) {
 				cout << "X ";
 			}
 
 			else if (cell.isShot()) {
 				cout << "H ";
-			}
-
-			else if (cell.isMissed()) {
-				cout << "O ";
 			}
 
 			else cout << ". ";

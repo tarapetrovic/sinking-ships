@@ -1,4 +1,5 @@
 #include "Cell.h"
+#include <iostream>
 
 Cell::Cell(): ship(nullptr), shot(false){}
 
@@ -27,6 +28,7 @@ void Cell::beShot(){
         }
         else missed = true;
     }
+    else std::cout << "You already tried this field!";
 }
 
 Ship* Cell::getShip(){

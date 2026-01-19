@@ -116,7 +116,6 @@ void Game::run(){
         if (turn) {
             playerShoot();
             turn = !turn;
-            
         }
         else {
             computerShoot();
