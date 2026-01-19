@@ -84,13 +84,14 @@ void Game::computerShoot(){
 
     playerBoard.shoot(row, col);
 
-    cout << "Your new board: \n";
+    char rowShot = 'A' + row;
+    int colShot = col + 1;
+
+    cout << "Computer shot at " << rowShot << colShot << ". Your new board: \n";
     playerBoard.printPlayerBoard();
 }
 
 bool Game::isGameOver(){
-    cout << playerCruiser.isSunk() << endl;
-    cout << playerSubmarine.isSunk() << endl;
 
     if (playerCruiser.isSunk() && playerSubmarine.isSunk()) {
         cout << "Computer wins!";

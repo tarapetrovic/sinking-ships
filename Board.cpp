@@ -95,7 +95,16 @@ void Board::shoot(int row, int column){
 
 void Board::printPlayerBoard(){
 
+	cout << "  ";
+	for (int k = 0; k < cols; k++) {
+		cout << k + 1 << " ";
+	}
+	cout << "\n";
+
 	for (int i = 0; i < rows; i++) {
+		char rowLabel = 'A' + i;
+		cout << rowLabel << " ";
+
 		for (int j = 0; j < cols; j++) {
 			Cell& cell = grid[i][j];
 
@@ -127,10 +136,23 @@ void Board::printPlayerBoard(){
 		}
 		cout << "\n";
 	}
+
+	cout << "\n";
 }
 
 void Board::printComputerBoard(){
+
+	cout << "  ";
+	for (int k = 0; k < cols; k++) {
+		cout << k + 1 << " ";
+	}
+	cout << "\n";
+
 	for (int i = 0; i < rows; i++) {
+
+		char rowLabel = 'A' + i;
+		cout << rowLabel << " ";
+
 		for (int j = 0; j < cols; j++) {
 			Cell& cell = grid[i][j];
 
@@ -154,6 +176,7 @@ void Board::printComputerBoard(){
 		}
 		cout << "\n";
 	}
+	cout << "\n";
 }
 
 int Board::getRows(){
