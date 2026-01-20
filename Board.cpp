@@ -20,6 +20,13 @@ bool Board::placeShip(vector<pair<int, int>> &cells, Ship* ship){
 			sameCol = false;
 	}
 
+	for (int i = 0; i < cells.size(); i++) {
+		if (cells[i].first > (rows - 1))
+			return false;
+		if (cells[i].second > (cols - 1))
+			return false;
+	}
+
 	if (!sameRow && !sameCol) //check if diagonal
 		return false;
 
@@ -83,10 +90,11 @@ bool Board::placeRandomShip(Ship* ship){
 			return true;
 		}
 	}
+	return false;
 }
 
-void Board::shoot(int row, int column){
-	grid[row][column].beShot();
+bool Board::shoot(int row, int column){
+	return grid[row][column].beShot();
 }
 
 

@@ -15,7 +15,7 @@ public:
 
 	void placeShipInCell(Ship* ship);
 
-	void beShot();
+	bool beShot();
 
 	Ship* getShip();
 };

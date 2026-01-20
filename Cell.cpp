@@ -20,15 +20,24 @@ void Cell::placeShipInCell(Ship* s){
     this->ship = s;
 }
 
-void Cell::beShot(){
+bool Cell::beShot(){
     if (!shot && !missed) {
         if (ship) {
             shot = true;
             ship->hit();
+            std::cout << "Hit! \n";
         }
-        else missed = true;
+        else {
+            missed = true;
+            std::cout << "Miss! \n";
+        }
+
+        return true;
     }
-    else std::cout << "You already tried this field!";
+    else {
+        //you already shot this field! //not printing this here bc of computer repetition that shouldnt be seen
+        return false;
+    }
 }
 
 Ship* Cell::getShip(){

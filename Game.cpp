@@ -2,6 +2,10 @@
 #include <iostream>
 #include <string>
 
+#include <thread>
+#include <chrono>
+
+
 
 
 pair<int, int> Game::parseCoordinates(string input){
@@ -60,35 +64,52 @@ void Game::placeComputerShips(){
 
 void Game::playerShoot(){
     string input;
-    cout << "This is the opponents board, you are shooting now \n";
+    cout << "This is the Computer's board, you are shooting now \n";
     computerBoard.printComputerBoard();
     cout << "Shoot: (E.g. A3) ";
 
-    vector<pair<int, int>> coordinates = readCoordinates(1);
-    int row = coordinates[0].first;
-    int col = coordinates[0].second;
+    while (true) {
+        vector<pair<int, int>> coordinates = readCoordinates(1);
+        int row = coordinates[0].first;
+        int col = coordinates[0].second;
 
-    computerBoard.shoot(row, col);
+        bool x = computerBoard.shoot(row, col);
+        if (x) break;
+        else cout << "You already shot this field! Try again (e.g. B4)";
 
+    }
     cout << "Computer's new board: \n";
     computerBoard.printComputerBoard();
 
 }
 
 void Game::computerShoot(){
-    int row = rand() % computerBoard.getRows();
-    int col = rand() % computerBoard.getCols();
 
+    using namespace chrono_literals;
+
+    this_thread::sleep_for(1500ms); // pause between player move and computer move
+    
     cout << "This is your board, the computer is shooting now \n";
     playerBoard.printPlayerBoard();
+    int row;
+    int col;
+    while (true) {
+        row = rand() % computerBoard.getRows();
+        col = rand() % computerBoard.getCols();
 
-    playerBoard.shoot(row, col);
+        bool x = playerBoard.shoot(row, col);
+        if (x) break;
+    }
 
     char rowShot = 'A' + row;
     int colShot = col + 1;
 
+    this_thread::sleep_for(1500ms);
+
     cout << "Computer shot at " << rowShot << colShot << ". Your new board: \n";
     playerBoard.printPlayerBoard();
+
+    this_thread::sleep_for(1500ms);
 }
 
 bool Game::isGameOver(){

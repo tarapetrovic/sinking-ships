@@ -17,7 +17,7 @@ public:
 
 	bool placeRandomShip(Ship* ship);
 
-	void shoot(int row, int column);
+	bool shoot(int row, int column);
 
 	void printPlayerBoard();
 	void printComputerBoard();
